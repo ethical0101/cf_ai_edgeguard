@@ -12,6 +12,11 @@ binding = "ANALYSIS_CACHE"
 id = "dbb850a962f84264803b26108f6e1466"
 preview_id = "d47ad46c7e094824ae9f442feaf9b694"
 
+[[kv_namespaces]]
+binding = "KV"
+id = "dbb850a962f84264803b26108f6e1466"
+preview_id = "d47ad46c7e094824ae9f442feaf9b694"
+
 [[workflows]]
 name = "analysis-workflow"
 binding = "ANALYSIS_WORKFLOW"

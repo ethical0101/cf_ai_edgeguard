@@ -23,9 +23,16 @@ function normalizeUrl(rawUrl: string): string {
   return rawUrl.trim().toLowerCase().replace(/\/$/, "");
 }
 
+function getCacheNamespace(env: Env): KVNamespace {
+  return env.ANALYSIS_CACHE ?? env.KV ?? (() => {
+    throw new Error("KV namespace binding is not configured");
+  })();
+}
+
 export async function getCachedAnalysis(env: Env, rawUrl: string): Promise<PersistedAnalysis | null> {
+  const cache = getCacheNamespace(env);
   const key = normalizeUrl(rawUrl);
-  const existing = await env.ANALYSIS_CACHE.get(key);
+  const existing = await cache.get(key);
   if (!existing) {
     return null;
   }
@@ -42,6 +49,7 @@ export async function setCachedAnalysis(
   rawUrl: string,
   value: PersistedAnalysis
 ): Promise<void> {
+  const cache = getCacheNamespace(env);
   const key = normalizeUrl(rawUrl);
-  await env.ANALYSIS_CACHE.put(key, JSON.stringify(value));
+  await cache.put(key, JSON.stringify(value));
 }

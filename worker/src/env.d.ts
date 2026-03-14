@@ -9,6 +9,7 @@ interface AiBinding {
 
 interface Env {
   ANALYSIS_CACHE: KVNamespace;
+  KV?: KVNamespace;
   ANALYSIS_WORKFLOW: WorkflowBinding;
   AI?: AiBinding;
   GEMINI_API_KEY?: string;
