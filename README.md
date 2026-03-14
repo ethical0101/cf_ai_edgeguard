@@ -202,3 +202,19 @@ Suggested demo flow:
 3. Show workflow ID and polling behavior.
 4. Show cached result behavior on repeated scan.
 5. Deploy Worker with `wrangler deploy`.
+
+<!-- AUTO_DEPLOY_INFO_START -->
+## Live Demo
+N/A
+
+## Worker API
+https://cf-ai-edgeguard-api.kommidruthendra2005.workers.dev
+
+## Architecture
+User
+-> Cloudflare Pages
+-> Worker API
+-> Workflow Engine
+-> Scanner + AI
+-> KV Storage
+<!-- AUTO_DEPLOY_INFO_END -->
