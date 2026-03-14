@@ -203,6 +203,7 @@ Suggested demo flow:
 4. Show cached result behavior on repeated scan.
 5. Deploy Worker with `wrangler deploy`.
 
+
 <!-- AUTO_DEPLOY_INFO_START -->
 ## Live Demo
 N/A

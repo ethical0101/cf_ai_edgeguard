@@ -27,6 +27,7 @@ COMMIT_MESSAGE="Add deployment info and documentation"
 WORKER_URL="N/A"
 FRONTEND_URL="N/A"
 USE_NPX_WRANGLER=0
+PAGES_PROJECT_NAME="${PAGES_PROJECT_NAME:-cf-ai-edgeguard}"
 
 log() {
   echo "[INFO] $1"
@@ -43,7 +44,7 @@ fail() {
 
 run_wrangler() {
   if [ "${USE_NPX_WRANGLER}" -eq 1 ]; then
-    npx wrangler "$@"
+    npx --prefix "${WORKER_DIR}" wrangler "$@"
   else
     wrangler "$@"
   fi
@@ -114,9 +115,9 @@ if command -v wrangler >/dev/null 2>&1; then
   log "wrangler detected: $(wrangler --version | head -n 1)"
 else
   warn "wrangler not found globally. Trying local npx wrangler..."
-  if npx wrangler --version >/dev/null 2>&1; then
+  if npx --prefix "${WORKER_DIR}" wrangler --version >/dev/null 2>&1; then
     USE_NPX_WRANGLER=1
-    log "Using npx wrangler from project dependencies."
+    log "Using npx wrangler from worker project dependencies."
   else
     fail "wrangler is missing. Install with: npm install -g wrangler"
   fi
@@ -166,7 +167,7 @@ log "STEP 5: Deploying frontend to Cloudflare Pages"
 cd "${FRONTEND_DIR}"
 set +e
 if run_wrangler pages --help >/dev/null 2>&1; then
-  PAGES_DEPLOY_OUTPUT="$(run_wrangler pages deploy dist 2>&1)"
+  PAGES_DEPLOY_OUTPUT="$(run_wrangler pages deploy dist --project-name "${PAGES_PROJECT_NAME}" 2>&1)"
   PAGES_DEPLOY_EXIT=$?
 else
   PAGES_DEPLOY_OUTPUT="wrangler pages command is not available in this environment."
