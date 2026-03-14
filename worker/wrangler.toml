@@ -1,0 +1,18 @@
+name = "cf-ai-edgeguard-api"
+main = "src/index.ts"
+compatibility_date = "2026-03-14"
+workers_dev = true
+account_id = "20140b52faa3469fb9b2e112c2dc0696"
+
+[vars]
+WORKER_SUBDOMAIN = "kommidruthendra2005.workers.dev"
+
+[[kv_namespaces]]
+binding = "ANALYSIS_CACHE"
+id = "dbb850a962f84264803b26108f6e1466"
+preview_id = "d47ad46c7e094824ae9f442feaf9b694"
+
+[[workflows]]
+name = "analysis-workflow"
+binding = "ANALYSIS_WORKFLOW"
+class_name = "AnalysisWorkflow"
