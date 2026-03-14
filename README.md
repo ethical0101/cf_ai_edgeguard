@@ -206,7 +206,7 @@ Suggested demo flow:
 
 <!-- AUTO_DEPLOY_INFO_START -->
 ## Live Demo
-N/A
+https://cf-ai-edgeguard.pages.dev
 
 ## Worker API
 https://cf-ai-edgeguard-api.kommidruthendra2005.workers.dev
