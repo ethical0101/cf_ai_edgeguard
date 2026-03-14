@@ -46,6 +46,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Use Wrangler v4
+        run: npm install --no-save wrangler@4
+
+      - name: Verify Wrangler authentication
+        run: |
+          npx wrangler whoami || {
+            echo "Wrangler auth failed. Check CLOUDFLARE_API_TOKEN validity, account resource scope, and permissions."
+            exit 1
+          }
+
       - name: Type check
         run: npm run check
 
@@ -88,6 +98,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Use Wrangler v4
+        run: npm install --no-save wrangler@4
+
+      - name: Verify Wrangler authentication
+        run: |
+          npx wrangler whoami || {
+            echo "Wrangler auth failed. Check CLOUDFLARE_API_TOKEN validity, account resource scope, and permissions."
+            exit 1
+          }
 
       - name: Build frontend
         run: npm run build
